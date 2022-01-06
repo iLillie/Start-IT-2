@@ -1,55 +1,39 @@
 function homeViewHTML() {
-  let userTasksHTML = '';
-  for (const user of model.users) {
-    let tasks = getTasksByUserId(user.id);
-    userTasksHTML += `
-      <h2 class="tasks-title">
-        ${user.name}'s tasks
-      </h2>
-      <section class="task-items">
-        ${taskItemsHTML(tasks)}
-      </section>
-    `;
-  }
-  return `
+  return /*html*/`
     <h1>Todo Homepage</h1>
-    ${userTasksHTML}
+    ${model.users
+      .map((user) => {
+        return /*html*/`
+        <h2 class="tasks-title">
+          ${user.name}'s tasks
+        </h2>
+        <section class="task-items">
+          ${getTasksByUserId(user.id)
+            .map((task) => taskItemHTML(task))
+            .join("")}
+        </section>`;
+      })
+      .join("")}
   `;
 }
 
-function taskItemsHTML(tasks) {
-  let taskItems = "";
-  for (const task of tasks) {
-    taskItems += taskItemHTML(task);    
-  }
-  return taskItems;
-}
-
 function taskItemHTML(task) {
-  const isCompleted = task.isCompleted;
-  const date = isCompleted ? task.completionDate : task.creationDate;
-  const dateStr = date.toLocaleTimeString('en-GB');
-  const content = task.content; 
-  const id = task.id;
-  const inputAttributes = isCompleted ? 'checked disabled' : '';
-
+  const date = task.isCompleted ? task.completionDate : task.creationDate;
   return /*html*/ `
   <section class="task-item">
     <input
       type="checkbox"
-      onclick="handleTaskCompleted(${id})" 
-      ${inputAttributes}>
+      onclick="handleTaskCompleted(${task.id})" 
+      ${task.isCompleted ? "checked disabled" : ""}>
     <h3 class="task-content">
-      ${content}
+      ${task.content}
     </h3>
     <p class="task-date">
-      ${dateStr}
+      ${date.toLocaleTimeString("en-GB").slice(0, -3)}
     </p>
-    <button 
+    <button
       class="task-delete"
-      onclick="handleTaskDeleted(${id})">
-      🗑
-    </button>
+      onclick="handleTaskDeleted(${task.id})">🗑</button>
   </section>
-  `
+  `;
 }
