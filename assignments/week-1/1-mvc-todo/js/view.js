@@ -1,7 +1,8 @@
 function updateView() {
+  const appElement = document.getElementById("app");
   switch (model.app.page) {
     case "home":
-      updateHomeView();
+      appElement.innerHTML = homeViewHTML();
       break;
   }
 }

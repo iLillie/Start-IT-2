@@ -1,37 +1,55 @@
-function updateHomeView() {
-  const appElement = getAppElement();
-  appElement.innerHTML = getHomeHTML();
-}
-
-function getHomeHTML() {
-  let homeHTML = `<h1>Todo Homepage</h1>
-  ${getTasksHTML()}`;
-  return homeHTML;
-}
-
-function getTasksHTML() {
-  const users = model.users;
-  if (users === null || users === undefined) return "";
-  let tasksHTML = '';
+function homeViewHTML() {
+  let userTasksHTML = '';
   for (const user of model.users) {
-    tasksHTML += /*html*/ `
-    <h2>${user.name}'s list</h2>
-    ${getTasksFromUserHTML(user.id)}
+    let tasks = getTasksByUserId(user.id);
+    userTasksHTML += `
+      <h2 class="tasks-title">
+        ${user.name}'s tasks
+      </h2>
+      <section class="task-items">
+        ${taskItemsHTML(tasks)}
+      </section>
     `;
   }
-  return tasksHTML;
+  return `
+    <h1>Todo Homepage</h1>
+    ${userTasksHTML}
+  `;
 }
 
-function getTasksFromUserHTML(userId) {
-  let tasksHTML = '';
-  for (const task of getTasksByUserId(userId)) {
-    tasksHTML += /*html*/ `
-        <section class="todo-task">
-          <input ${task.isCompleted ? "checked" : ""} onclick="handleTaskCompleted(${task.id})" type="checkbox">
-          <h3 class="task-content">${task.content}</h3>
-          <button onclick="handleTaskDeleted(${task.id})" class="task-delete">🗑</button>
-        </section>
-      `;
+function taskItemsHTML(tasks) {
+  let taskItems = "";
+  for (const task of tasks) {
+    taskItems += taskItemHTML(task);    
   }
-  return tasksHTML;
+  return taskItems;
+}
+
+function taskItemHTML(task) {
+  const isCompleted = task.isCompleted;
+  const date = isCompleted ? task.completionDate : task.creationDate;
+  const dateStr = date.toLocaleTimeString('en-GB');
+  const content = task.content; 
+  const id = task.id;
+  const inputAttributes = isCompleted ? 'checked disabled' : '';
+
+  return /*html*/ `
+  <section class="task-item">
+    <input
+      type="checkbox"
+      onclick="handleTaskCompleted(${id})" 
+      ${inputAttributes}>
+    <h3 class="task-content">
+      ${content}
+    </h3>
+    <p class="task-date">
+      ${dateStr}
+    </p>
+    <button 
+      class="task-delete"
+      onclick="handleTaskDeleted(${id})">
+      🗑
+    </button>
+  </section>
+  `
 }

@@ -1,7 +1,3 @@
-function getAppElement() {
-  return document.getElementById("app");
-}
-
 function getTaskById(taskId) {
     let task;
     for (const task of model.tasks) {
@@ -21,10 +17,10 @@ function getTaskIndexById(taskId) {
 }
 
 function getTasksByUserId(userId) {
-  let userTasks = [];
+  let tasks = [];
   for (const task of model.tasks) {
     if (task.authorId != userId) continue;
-    userTasks.push(task);
+    tasks.push(task);
   }
-  return userTasks;
+  return tasks;
 }

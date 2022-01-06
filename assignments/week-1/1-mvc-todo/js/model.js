@@ -13,7 +13,7 @@ const model = {
       id: 0,
       authorId: 0,
       content: "Buy groceries",
-      isCompleted: true,
+      isCompleted: false,
       creationDate: new Date(),
       completionDate: null,
     },

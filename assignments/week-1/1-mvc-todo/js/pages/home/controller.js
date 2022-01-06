@@ -1,6 +1,7 @@
 function handleTaskCompleted(taskId) {
     const task = getTaskById(taskId);
-    task.isCompleted = !task.isCompleted;
+    task.completionDate = new Date();
+    task.isCompleted = true;
     updateView();
 }
 

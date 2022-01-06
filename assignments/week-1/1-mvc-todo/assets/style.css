@@ -1,13 +1,23 @@
-.todo-task {
+.task-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     background-color: hsl(0, 0%, 90%);
     padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.task-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.task-content {
+    margin-right: auto;
 }
 
 .task-delete {
-    margin-left: auto;
     border: none;
     cursor: pointer;
     font-size: 1.5rem;
