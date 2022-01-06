@@ -1,0 +1,21 @@
+
+
+.todo-item {
+   display: flex; 
+   align-items: center;
+   gap: 2rem;
+   background-color: rgba(0, 0, 0, 0.15);
+   padding: 1rem;
+}
+
+.todo-delete {
+    margin-left: auto;
+}
+
+h3 {
+
+}
+
+.todo {
+    width: 30rem;
+}
