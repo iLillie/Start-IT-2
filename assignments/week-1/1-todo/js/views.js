@@ -1,1 +1,0 @@
-updateView(model.app.page);
