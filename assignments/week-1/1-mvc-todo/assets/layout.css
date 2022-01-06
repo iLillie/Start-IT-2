@@ -16,7 +16,7 @@ body {
     height: 100vh;
     display: grid;
     grid-template-rows: 5rem auto;
-    grid-template-columns: 25rem auto 25rem;
+    grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
     grid-template-areas: 
     'left header right'
     'left main right'
