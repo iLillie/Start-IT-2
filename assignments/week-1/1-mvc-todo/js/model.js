@@ -5,7 +5,11 @@ const model = {
   },
 
   // 2: inputs
-  inputs: {},
+  inputs: {
+    home: {
+      textbox: ['', '']
+    }
+  },
 
   // 3: shared data
   tasks: [

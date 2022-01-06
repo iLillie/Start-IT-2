@@ -29,4 +29,5 @@ body {
 
 main {
     grid-area: main;
+    font-family: 'Montserrat';
 }

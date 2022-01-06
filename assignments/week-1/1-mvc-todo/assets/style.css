@@ -7,6 +7,16 @@
     border-radius: 0.5rem;
 }
 
+.completed {
+    opacity: 0.5;
+}
+
+.tasks-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .task-items {
     display: flex;
     flex-direction: column;
@@ -27,4 +37,22 @@
 
 .task-delete:hover {
     color: blue;
+}
+
+h2 {
+    font-weight: 500;
+    color: hsl(0, 0%, 10%);
+}
+
+h3 {
+    font-weight: 400;
+    color: hsl(0, 0%, 10%);
+}
+
+@media only screen and (max-width: 800px) {
+    .tasks-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
 }

@@ -7,6 +7,14 @@ function getTaskById(taskId) {
     return null;
 }
 
+function getHighestId(objects) {
+  let objIndex = 0; 
+  for (const obj of objects) {
+    objIndex = obj.id > objIndex ? obj.id : objIndex;
+  }
+  return objIndex;
+}
+
 function getTaskIndexById(taskId) {
     let taskIndex = -1;
     for (const task of model.tasks) {
