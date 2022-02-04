@@ -11,6 +11,8 @@ html {
 
 /* layout */
 body {
+    background-color: #2F2A39;
+    color: #FFF8EA;
     margin: 0;
     /* background-color: #2F2A39; */
     height: 100vh;
